@@ -5,7 +5,6 @@ import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.sentinelqa.driver.BrowserFactory;
-import com.sentinelqa.enums.BrowserType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -19,7 +18,7 @@ public class BaseTest {
     @BeforeEach
     void setUp() {
         playwright = Playwright.create();
-        browser = BrowserFactory.createBrowser(playwright, BrowserType.CHROME);
+        browser = BrowserFactory.createBrowser(playwright);
         context = browser.newContext();
         page = context.newPage();
     }
