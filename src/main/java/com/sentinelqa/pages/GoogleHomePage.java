@@ -1,6 +1,7 @@
 package com.sentinelqa.pages;
 
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.LoadState;
 
 public class GoogleHomePage extends BasePage {
 
@@ -14,8 +15,10 @@ public class GoogleHomePage extends BasePage {
         page.navigate("https://www.google.com");
     }
 
-    public void searchFor(String text) {
+    public GoogleResultsPage searchFor(String text) {
         page.locator(searchBox).fill(text);
         page.locator(searchBox).press("Enter");
+        page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+        return new GoogleResultsPage(page);
     }
 }
